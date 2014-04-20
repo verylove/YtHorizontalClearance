@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="pd_tiles" tilewidth="32" tileheight="32">
+  <image source="pd_tiles.png" width="1024" height="512"/>
+ </tileset>
+ <layer name="Floor" width="100" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1VdPAkEUhuFdW4KIHVSsg3ohCvZeQW/s2LCjf139I74kO8nEBOJmRrIx50ueLAnnZM6euVjPk0gkEolEIpG4zBc+gmfVZ43fYWpq/f8XZ/23mpjvee2IowMJdKIL3ehBL/rQjyRSGICPJrSiDYMYQhrDGMEoxjCOiaBH1+t+mxlczN+MFmMuc75G72cGWcxiDjnkMY8FLGIJy1jBKtawDoUpTCODDWxiC9vYwS72sI8Do14FMpYz2M5fPX/SmMt8H+VwP+qX+znGCU5xhnNc4BIlXOEaN7jFHcq4xyGOUEARD3jEE57xgldU8GbUF4Me3Wczg02vPl/P9fN9Co72owz19vPu1/+2uEgDjpCEiNxHtCL3Ea3IfUQrch/h8g2OhZCD
+  </data>
+ </layer>
+ <layer name="Wall" width="100" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt0jWTVEEUBtAZ7H/g7g4Rsri7RLC4u0a4u0OEuztEuLvDn+HEXdRUb+/bTXhddaomuO/rvvdOsVAo1KAmtahNneB3Ma+ptpr2dKAjjWlCU5rRnBZBTV3qUZ8GNKRRUNOJznShK93onpAT856WtKI1bWhLu4ScrHqPySk1n5GMYjR96Ud/BjCQQUFND3rSi96U0SeoGcNYxjGeCUxMyIl5z2CGMJRhDGdEQk5WvcfklJrPYpawlOnMYCazmM2coGYSkylnClOZFtQsYzkrWMkqVifkxLxnLvOYzwIWsighJ6veY3JKzWcf+znAJjazha1sY3tQs4a1rGM9G9gY1BzkEIc5wlGOJeTEvGcHO9nFbvawNyEnq95jckrN5ya3uM1ZznGeC1zkUlBznBOc5BSnORPU3OEu97jPAx4m5MS85zJXuMo1rnMjISer3mNySs3nC1/5xgte8orXvOFtUPOIxzzhKc94HtR85wc/+cVv/iTkxLznHe/5wEc+8TkhJ6veY3JKzSc/+clPfqrrlBVz/4tw3//afxb/lZh7Uu9K7aEq55bFrGK+qUwfFbmnonfFZld2DxW9M/W+qphRVjPOsj7LfVTl/vN9VN8+/gIw6KXx
+  </data>
+ </layer>
+</map>
