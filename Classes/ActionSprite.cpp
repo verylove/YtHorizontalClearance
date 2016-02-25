@@ -12,6 +12,7 @@ ActionSprite::~ActionSprite(void)
 {
 }
 
+//空闲
 void ActionSprite::idle()
 {
 	if(this->_actionState!=kActionStateIdle){
@@ -23,6 +24,7 @@ void ActionSprite::idle()
 	}
 }
 
+//攻击
 void ActionSprite::attack()
 {
 	if(this->_actionState==kActionStateIdle || this->_actionState==kActionStateAttack || this->_actionState==kActionStateWalk){
@@ -33,6 +35,7 @@ void ActionSprite::attack()
 	}
 }
 
+//直线走
 void ActionSprite::walkWithDirection(cocos2d::CCPoint direction)
 {
 	if(this->_actionState==kActionStateIdle){
@@ -85,7 +88,7 @@ void ActionSprite::setPosition(CCPoint position)
 	CCSprite::setPosition(position);
 	this->transformBoxes();
 }
-
+//受伤
 void ActionSprite::hurtWithDamage(float damage)
 {
 	if(this->_actionState!=kActionDead){
@@ -100,7 +103,7 @@ void ActionSprite::hurtWithDamage(float damage)
 		}
 	}
 }
-
+//挂了
 void ActionSprite::dead()
 {
 	this->stopAllActions();
