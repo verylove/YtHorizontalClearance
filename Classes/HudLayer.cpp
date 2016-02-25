@@ -3,6 +3,8 @@
 
 USING_NS_CC;
 
+//游戏控制层
+
 HudLayer::HudLayer(void)
 {
 	this->_dPad=NULL;
@@ -21,7 +23,7 @@ bool HudLayer::init()
 
 	this->_dPad=SimpleDPad::dPadWithFile(CCString::create("pd_dpad.png"),64);
 	this->_dPad->setPosition(ccp(64,64));
-	this->_dPad->setOpacity(100); //����͸����
+	this->_dPad->setOpacity(100); //ÉèÖÃÍ¸Ã÷¶È
 	this->addChild(_dPad);
 
 	this->scheduleUpdate();
