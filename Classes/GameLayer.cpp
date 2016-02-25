@@ -3,6 +3,7 @@
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
 
+//æ¸¸æˆèƒŒæ™¯å±‚
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -27,7 +28,7 @@ bool GameLayer::init()
 		return false;
 	}
 
-	//Ô¤¼ÓÔØÒôÀÖºÍÒôĞ§
+	//é¢„åŠ è½½éŸ³ä¹å’ŒéŸ³æ•ˆ
 	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("sound/arena.mp3");
 	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sound/arena.mp3");
 	SimpleAudioEngine::sharedEngine()->preloadEffect("pd_hit0.wav");
@@ -39,7 +40,7 @@ bool GameLayer::init()
 	this->initTiledmap();
 
 
-	//¼ÓÔØ¾«Áé±íµ¥
+	//åŠ è½½ç²¾çµè¡¨å•
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("sprites.plist");
 
 	_actors=CCSpriteBatchNode::create("sprites.png");
@@ -70,7 +71,7 @@ void GameLayer::initRobots()
 		this->_actors->addChild(robot);
 		this->_robots->addObject(robot);
 
-		//³õÊ¼»¯»úÆ÷ÈËÎ»ÖÃ
+		//åˆå§‹åŒ–æœºå™¨äººä½ç½®
 		CCSize winSize=CCDirector::sharedDirector()->getWinSize();
 		int minX=winSize.width+robot->_centerToSides;
 		int maxX=this->_tilemp->getMapSize().width*this->_tilemp->getTileSize().width-robot->_centerToSides;
@@ -92,7 +93,7 @@ void GameLayer::initTiledmap()
 	CCARRAY_FOREACH(_tilemp->getChildren(),obj){
 		CCTMXLayer* _child=(CCTMXLayer*)obj;
 
-		_child->getTexture()->setAliasTexParameters();  //¹Ø±Õ¿¹¾â³İ
+		_child->getTexture()->setAliasTexParameters();  //å…³é—­æŠ—é”¯é½¿
 	}
 
 	this->addChild(_tilemp);
@@ -130,10 +131,10 @@ void GameLayer::ccTouchesBegan(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEven
 }
 void GameLayer::registerWithTouchDispatcher(void)
 {
-	CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this,0);  //×¢²á¶àµã´¥Ãş
+	CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this,0);  //æ³¨å†Œå¤šç‚¹è§¦æ‘¸
 }
 
-//Ö´ĞĞ ĞĞ×ß¶¯×÷
+//æ‰§è¡Œ è¡Œèµ°åŠ¨ä½œ
 void GameLayer::didChangeDirectorTo(SimpleDPad* simpleDPad,cocos2d::CCPoint direction)
 {
 	this->_hero->walkWithDirection(direction);
@@ -144,7 +145,7 @@ void GameLayer::isHoldingDirector(SimpleDPad* simpleDPad,cocos2d::CCPoint direct
 	this->_hero->walkWithDirection(direction);
 }
 
-//´¥Ãş·½Ïò¼ü½áÊøµ÷ÓÃµÄº¯Êı
+//è§¦æ‘¸æ–¹å‘é”®ç»“æŸè°ƒç”¨çš„å‡½æ•°
 void GameLayer::simpleDPadTouchEnded(SimpleDPad* simpleDpad)
 {
 	if(this->_hero->_actionState==kActionStateWalk){
@@ -157,13 +158,13 @@ void GameLayer::update(float dt)
 	this->_hero->updateDesiredPosition(dt);
 
 
-	//ÉèÖÃÓ¢ĞÛÎ»ÖÃ
+	//è®¾ç½®è‹±é›„ä½ç½®
 	float posx=MIN(this->_tilemp->getMapSize().width*this->_tilemp->getTileSize().width-this->_hero->_centerToSides,MAX(this->_hero->_centerToSides,this->_hero->_desiredPosition.x));
 	float posY=MIN(3*this->_tilemp->getTileSize().height+this->_hero->_centerToBottom,MAX(_hero->_centerToBottom,_hero->_desiredPosition.y));
 
 	this->_hero->setPosition(ccp(posx,posY));
 
-	//µØÍ¼¹ö¶¯
+	//åœ°å›¾æ»šåŠ¨
 	CCSize winSize=CCDirector::sharedDirector()->getWinSize();
 	int x=MAX(_hero->getPositionX(),winSize.width/2);
 	int y=MAX(_hero->getPositionY(),winSize.height/2);
@@ -176,7 +177,7 @@ void GameLayer::update(float dt)
 	this->setPosition(viewPoint);
 	
 
-	//¸Ä±ä»úÆ÷ÈËºÍÓ¢ĞÛµÄzÖáË³Ğò
+	//æ”¹å˜æœºå™¨äººå’Œè‹±é›„çš„zè½´é¡ºåº
 	CCObject* object=NULL;
 	CCARRAY_FOREACH(this->_actors->getChildren(),object){
 		this->_actors->reorderChild((CCNode*)object,1000-((ActionSprite*)object)->getPositionY());
@@ -184,7 +185,7 @@ void GameLayer::update(float dt)
 
 	this->updateRobots(dt);
 
-	//ÏŞ¶¨»úÆ÷ÈËÖ»ÄÜÔÚµØÍ¼·¶Î§ÄÚÔË¶¯
+	//é™å®šæœºå™¨äººåªèƒ½åœ¨åœ°å›¾èŒƒå›´å†…è¿åŠ¨
 	CCObject* pObject=NULL;
 	CCARRAY_FOREACH(this->_robots,pObject){
 		Robot* robot=(Robot*)pObject;
@@ -207,7 +208,7 @@ static float GetCurTime()
 
 void GameLayer::updateRobots(float dt)
 {
-	int alive=0; //µ±Ç°»î×ÅµÄ»úÆ÷ÈËµÄÊıÁ¿
+	int alive=0; //å½“å‰æ´»ç€çš„æœºå™¨äººçš„æ•°é‡
 	int distanceSQ;
 	int randomChoice=0;
 	
@@ -227,7 +228,7 @@ void GameLayer::updateRobots(float dt)
 					robot->_nextDecisionTime=::GetCurTime()+frandom_range(0.1,0.5)*1000;
 					randomChoice=random_range(0,1);
 
-					if(randomChoice==0){   //»úÆ÷ÈËÖ´ĞĞ¹¥»÷¶¯×÷
+					if(randomChoice==0){   //æœºå™¨äººæ‰§è¡Œæ”»å‡»åŠ¨ä½œ
 						if(this->_hero->getPositionX()>robot->getPositionX()){
 							robot->setScaleX(1.0f);
 						}else{
@@ -238,7 +239,7 @@ void GameLayer::updateRobots(float dt)
 
 						robot->attack();
 
-						//¼ì²â»úÆ÷ÈËÊÇ·ñ¹¥»÷µ½Ó¢ĞÛ
+						//æ£€æµ‹æœºå™¨äººæ˜¯å¦æ”»å‡»åˆ°è‹±é›„
 						if(fabsf(this->_hero->getPositionY()-robot->getPositionY())<10){
 							if(_hero->_hitBox.actual.intersectsRect(robot->_attackBox.actual)){
 								_hero->hurtWithDamage(robot->_damage);
@@ -248,22 +249,22 @@ void GameLayer::updateRobots(float dt)
 								}
 							}
 						}
-					}else{   //Ö´ĞĞ¿ÕÏĞ¶¯×÷
+					}else{   //æ‰§è¡Œç©ºé—²åŠ¨ä½œ
 						robot->idle();
 					}
 				}else if(distanceSQ <= CCDirector::sharedDirector()->getWinSize().width*CCDirector::sharedDirector()->getWinSize().width){
 					robot->_nextDecisionTime=::GetCurTime()+frandom_range(0.5,1.0)*1000;
 					randomChoice=random_range(0,2);
 
-					if(randomChoice==0){  //»úÆ÷ÈËÖ´ĞĞĞĞ×ß¶¯×÷
-						CCPoint moveDirection=ccpNormalize(ccpSub(_hero->getPosition(),robot->getPosition()));  //Çó±ê×¼»¯ÏòÁ¿
+					if(randomChoice==0){  //æœºå™¨äººæ‰§è¡Œè¡Œèµ°åŠ¨ä½œ
+						CCPoint moveDirection=ccpNormalize(ccpSub(_hero->getPosition(),robot->getPosition()));  //æ±‚æ ‡å‡†åŒ–å‘é‡
 
 						robot->walkWithDirection(moveDirection);
 						robot->updateDesiredPosition(dt*20);
 						//robot->setPosition(robot->_desiredPosition);
 		
 
-					}else{  //Ö´ĞĞ¿ÕÏĞ¶¯×÷
+					}else{  //æ‰§è¡Œç©ºé—²åŠ¨ä½œ
 						robot->idle();
 					}
 				}
@@ -280,8 +281,8 @@ void GameLayer::updateRobots(float dt)
 
 void GameLayer::endGame()
 {
-	CCPoint origin=CCDirector::sharedDirector()->getVisibleOrigin();  //»ñÈ¡ÆÁÄ»¿ÉÊÓÇøÓòµÄÆğµã
-	CCSize size=CCDirector::sharedDirector()->getVisibleSize();  //»ñÈ¡ÆÁÄ»¿ÉÊÓÇøÓò´óĞ¡
+	CCPoint origin=CCDirector::sharedDirector()->getVisibleOrigin();  //è·å–å±å¹•å¯è§†åŒºåŸŸçš„èµ·ç‚¹
+	CCSize size=CCDirector::sharedDirector()->getVisibleSize();  //è·å–å±å¹•å¯è§†åŒºåŸŸå¤§å°
 
 	CCLabelTTF* label=CCLabelTTF::create("restart","Arial",40);
 	CCMenuItemLabel* restartItem=CCMenuItemLabel::create(label,this,callfuncO_selector(GameLayer::restartGame));
